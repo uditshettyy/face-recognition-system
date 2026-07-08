@@ -1,20 +1,23 @@
-# Ignore virtual environments
+# Virtual Environment
 venv/
-env/
 
-# Python cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
 
-# Jupyter checkpoints
-.ipynb_checkpoints/
+# Database
+attendance.db
 
-# OS files
+# VS Code
+.vscode/
+
+# OS Files
 .DS_Store
 Thumbs.db
 
-# Large binaries
-*.dll
-*.pyd
-*.so
+# TensorFlow Logs
+logs/
+
+# Temporary Files
+*.log
