@@ -41,10 +41,5 @@ def mark_attendance(name, date, time):
 
 
 create_database()
-mark_attendance(
-    "Test User",
-    "08-07-2026",
-    "19:00:00"
-)
 
 print("Database Ready!")
