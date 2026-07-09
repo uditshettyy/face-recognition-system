@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import simpledialog, messagebox
 import subprocess
 import sys
 
@@ -10,12 +10,44 @@ import sys
 def start_recognition():
     subprocess.Popen([sys.executable, "src/recognizer.py"])
 
+
 def register_face():
-    subprocess.Popen([sys.executable, "src/register.py"])
+
+    name = simpledialog.askstring(
+        "Register Face",
+        "Enter your Name:"
+    )
+
+    if not name:
+        return
+
+    process = subprocess.run(
+        [
+            sys.executable,
+            "src/register.py",
+            name
+        ]
+    )
+
+    if process.returncode == 0:
+
+        messagebox.showinfo(
+            "Success",
+            "Face Registered Successfully!"
+        )
+
+    else:
+
+        messagebox.showerror(
+            "Error",
+            "Registration Failed!"
+        )
 
 
 def view_attendance():
-    subprocess.Popen([sys.executable, "src/view_attendance.py"])
+    subprocess.Popen(
+        [sys.executable, "src/view_attendance.py"]
+    )
 
 
 def exit_program():
@@ -29,7 +61,7 @@ def exit_program():
 root = tk.Tk()
 
 root.title("Face Recognition Attendance System")
-root.geometry("600x500")
+root.geometry("650x520")
 root.resizable(False, False)
 root.configure(bg="#f5f5f5")
 
@@ -46,31 +78,31 @@ title = tk.Label(
     fg="#2c3e50"
 )
 
-title.pack(pady=(35, 10))
+title.pack(pady=(35,10))
 
 
 subtitle = tk.Label(
     root,
     text="AI Powered Attendance using Face Recognition",
-    font=("Segoe UI", 11),
+    font=("Segoe UI",11),
     bg="#f5f5f5",
     fg="gray"
 )
 
-subtitle.pack(pady=(0, 35))
+subtitle.pack(pady=(0,35))
 
 
 # -----------------------------
 # Buttons
 # -----------------------------
 
-button_font = ("Segoe UI", 12, "bold")
+button_font = ("Segoe UI",12,"bold")
 
 button_style = {
-    "width": 28,
-    "height": 2,
-    "font": button_font,
-    "cursor": "hand2"
+    "width":28,
+    "height":2,
+    "font":button_font,
+    "cursor":"hand2"
 }
 
 
@@ -129,7 +161,7 @@ btn_exit.pack(pady=10)
 footer = tk.Label(
     root,
     text="Built with Python • MediaPipe • FaceNet • SQLite",
-    font=("Segoe UI", 10),
+    font=("Segoe UI",10),
     bg="#f5f5f5",
     fg="gray"
 )
